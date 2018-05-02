@@ -69,6 +69,10 @@ const Chunking = (options = {}) => {
     fn.cancel = () => {
         if (cancelled)
             throw new Error("chunking already destroyed")
+        if (timer !== null) {
+            clearTimeout(timer)
+            timer = null
+        }
         cancelled = true
     }
 
