@@ -79,7 +79,7 @@ const Chunking = (options = {}) => {
         cancelled = true
     }
 
-    /*  initially reset the context  */
+    /*  initially (re)set the context  */
     options.reset(ctx)
 
     /*  return the chunking API function  */
