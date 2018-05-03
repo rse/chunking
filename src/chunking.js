@@ -48,7 +48,7 @@ const Chunking = (options = {}) => {
             return
 
         /*  absorb the arguments  */
-        options.absorb(ctx, args)
+        options.absorb(ctx, ...args)
 
         /*  perform delay...  */
         if (timer === null) {

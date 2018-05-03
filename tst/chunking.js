@@ -34,7 +34,7 @@ describe("Chunking API", () => {
             reset (ctx) {
                 ctx.queue = []
             },
-            absorb (ctx, args) {
+            absorb (ctx, ...args) {
                 ctx.queue = ctx.queue.concat(args)
             },
             emit (ctx) {
