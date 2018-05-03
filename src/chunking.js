@@ -53,14 +53,17 @@ const Chunking = (options = {}) => {
         /*  perform delay...  */
         if (timer === null) {
             timer = setTimeout(() => {
-                timer = null
-
                 /*  short-circuit processing  */
                 if (cancelled)
                     return
 
                 /*  finally emit the arguments  */
                 options.emit.call(ctx)
+
+                /*  reset the context  */
+                options.reset.call(ctx)
+
+                timer = null
             }, options.delay)
         }
     }
