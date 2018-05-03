@@ -26,8 +26,8 @@
 const Chunking = (options = {}) => {
     /*  determine options  */
     options = Object.assign({}, {
-        reset:  ()        => { this.chunks = [] },
-        absorb: (...args) => { this.chunks = this.chunks.concat(args) },
+        reset:  (ctx)          => { ctx.chunks = [] },
+        absorb: (ctx, ...args) => { ctx.chunks = ctx.chunks.concat(args) },
         emit:   null,
         delay:  100
     }, options)
