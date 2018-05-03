@@ -1,6 +1,6 @@
 {
     "name":        "chunking",
-    "version":     "0.9.3",
+    "version":     "0.9.4",
     "description": "Simple Task Chunking",
     "keywords":    [ "simple", "task", "chunking" ],
     "main":        "lib/chunking.js",
