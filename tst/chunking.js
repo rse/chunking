@@ -31,14 +31,14 @@ describe("Chunking API", () => {
             done()
         }
         let chunking = new Chunking({
-            reset () {
-                this.queue = []
+            reset (ctx) {
+                ctx.queue = []
             },
-            absorb (...args) {
-                this.queue = this.queue.concat(args)
+            absorb (ctx, args) {
+                ctx.queue = ctx.queue.concat(args)
             },
-            emit () {
-                fn(...this.queue)
+            emit (ctx) {
+                fn(...ctx.queue)
             },
             delay: 100
         })

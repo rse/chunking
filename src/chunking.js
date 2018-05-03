@@ -48,7 +48,7 @@ const Chunking = (options = {}) => {
             return
 
         /*  absorb the arguments  */
-        options.absorb.apply(ctx, args)
+        options.absorb(ctx, args)
 
         /*  perform delay...  */
         if (timer === null) {
@@ -58,10 +58,10 @@ const Chunking = (options = {}) => {
                     return
 
                 /*  finally emit the arguments  */
-                options.emit.call(ctx)
+                options.emit(ctx)
 
                 /*  reset the context  */
-                options.reset.call(ctx)
+                options.reset(ctx)
 
                 timer = null
             }, options.delay)
@@ -80,7 +80,7 @@ const Chunking = (options = {}) => {
     }
 
     /*  initially reset the context  */
-    options.reset.call(ctx)
+    options.reset(ctx)
 
     /*  return the chunking API function  */
     return fn
