@@ -29,7 +29,24 @@ Usage
 -----
 
 ```js
-FIXME
+const Chunking = require("chunking")
+const expect   = require("chai").expect
+
+const receive = (items) => {
+    expect(items).to.be.deep.equal([ "foo", "bar", "baz", "quux" ])
+    console.log(items)
+}
+
+let notify = new Chunking({
+    reset:  (ctx)        => { ctx.items = [] },
+    absorb: (ctx, items) => { items.forEach((item) => ctx.items.push(item)) },
+    emit:   (ctx)        => { receive(ctx.items) },
+    delay:  2 * 1000
+})
+
+notify([ "foo", "bar" ])
+notify([ "baz" ])
+notify([ "quux" ])
 ```
 
 License
