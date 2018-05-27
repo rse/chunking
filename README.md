@@ -37,7 +37,7 @@ const receive = (items) => {
     console.log(items)
 }
 
-let notify = new Chunking({
+let notify = Chunking({
     reset:  (ctx)        => { ctx.items = [] },
     absorb: (ctx, items) => { items.forEach((item) => ctx.items.push(item)) },
     emit:   (ctx)        => { receive(ctx.items) },

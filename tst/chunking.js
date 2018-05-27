@@ -30,7 +30,7 @@ describe("Chunking API", () => {
             expect(args).to.be.deep.equal([ "foo", 42, "bar", 7 ])
             done()
         }
-        let chunking = new Chunking({
+        let chunking = Chunking({
             reset (ctx) {
                 ctx.queue = []
             },
