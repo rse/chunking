@@ -23,7 +23,7 @@
 */
 
 /*  the API function  */
-const Chunking = (options = {}) => {
+const chunking = (options = {}) => {
     /*  determine options  */
     options = Object.assign({}, {
         reset:  (ctx)          => { ctx.chunks = [] },
@@ -99,5 +99,5 @@ const Chunking = (options = {}) => {
 }
 
 /*  export the API function  */
-module.exports = Chunking
+module.exports = chunking
 

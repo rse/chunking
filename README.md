@@ -29,7 +29,7 @@ Usage
 -----
 
 ```js
-const Chunking = require("chunking")
+const chunking = require("chunking")
 const expect   = require("chai").expect
 
 const receive = (items) => {
@@ -37,7 +37,7 @@ const receive = (items) => {
     console.log(items)
 }
 
-let notify = Chunking({
+let notify = chunking({
     reset:  (ctx)        => { ctx.items = [] },
     absorb: (ctx, items) => { items.forEach((item) => ctx.items.push(item)) },
     emit:   (ctx)        => { receive(ctx.items) },
