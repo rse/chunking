@@ -40,6 +40,7 @@ const Chunking = (options = {}) => {
     let ctx       = {}
     let timer     = null
     let cancelled = false
+    let absorbed  = false
 
     /*  the chunking API function  */
     let fn = function (...args) {
@@ -49,23 +50,34 @@ const Chunking = (options = {}) => {
 
         /*  absorb the arguments  */
         options.absorb.apply(undefined, [ ctx ].concat(args))
+        absorbed = true
 
-        /*  perform delay...  */
+        /*  automatically emit after a delay  */
         if (timer === null) {
             timer = setTimeout(() => {
-                /*  short-circuit processing  */
-                if (cancelled)
-                    return
-
-                /*  finally emit the arguments  */
-                options.emit(ctx)
-
-                /*  reset the context  */
-                options.reset(ctx)
-
+                fn.emit()
                 timer = null
             }, options.delay)
         }
+    }
+
+    /*  provide manual emit possibility  */
+    fn.emit = () => {
+        /*  short-circuit processing  */
+        if (cancelled)
+            return
+        if (!absorbed)
+            return
+
+        /*  create and switch to new context  */
+        let ctxNew = {}
+        options.reset(ctxNew)
+        let ctxOld = ctx
+        ctx = ctxNew
+        absorbed = false
+
+        /*  emit old context  */
+        options.emit(ctxOld)
     }
 
     /*  provide cancellation possibility  */
