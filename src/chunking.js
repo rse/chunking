@@ -43,7 +43,7 @@ const chunking = (options = {}) => {
     let absorbed  = false
 
     /*  the chunking API function  */
-    let fn = function (...args) {
+    const fn = function (...args) {
         /*  short-circuit processing  */
         if (cancelled)
             return
@@ -70,9 +70,9 @@ const chunking = (options = {}) => {
             return
 
         /*  create and switch to new context  */
-        let ctxNew = {}
+        const ctxNew = {}
         options.reset(ctxNew)
-        let ctxOld = ctx
+        const ctxOld = ctx
         ctx = ctxNew
         absorbed = false
 
